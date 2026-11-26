@@ -1,0 +1,16 @@
+[package]
+name = "ferrum-ui-examples"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+ferrum-ui = { path = "../crates/ferrum-ui" }
+ferrum-ui-core = { path = "../crates/ferrum-ui-core" }
+ferrum-ui-ssr = { path = "../crates/ferrum-ui-ssr" }
+
+[lints]
+workspace = true

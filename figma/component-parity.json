@@ -1,0 +1,31 @@
+{
+  "version": "0.1.0",
+  "source": "crates/ferrum-ui/src/components",
+  "components": [
+    { "name": "Accordion", "figmaNode": "Ferrum UI/Accordion", "status": "mapped" },
+    { "name": "Alert", "figmaNode": "Ferrum UI/Alert", "status": "mapped" },
+    { "name": "Avatar", "figmaNode": "Ferrum UI/Avatar", "status": "mapped" },
+    { "name": "Badge", "figmaNode": "Ferrum UI/Badge", "status": "mapped" },
+    { "name": "Breadcrumb", "figmaNode": "Ferrum UI/Breadcrumb", "status": "mapped" },
+    { "name": "Button", "figmaNode": "Ferrum UI/Button", "status": "mapped" },
+    { "name": "Card", "figmaNode": "Ferrum UI/Card", "status": "mapped" },
+    { "name": "Checkbox", "figmaNode": "Ferrum UI/Checkbox", "status": "mapped" },
+    { "name": "Dialog", "figmaNode": "Ferrum UI/Dialog", "status": "mapped" },
+    { "name": "EmptyState", "figmaNode": "Ferrum UI/EmptyState", "status": "mapped" },
+    { "name": "Input", "figmaNode": "Ferrum UI/Input", "status": "mapped" },
+    { "name": "Kbd", "figmaNode": "Ferrum UI/Kbd", "status": "mapped" },
+    { "name": "Label", "figmaNode": "Ferrum UI/Label", "status": "mapped" },
+    { "name": "Menu", "figmaNode": "Ferrum UI/Menu", "status": "mapped" },
+    { "name": "Progress", "figmaNode": "Ferrum UI/Progress", "status": "mapped" },
+    { "name": "RadioGroup", "figmaNode": "Ferrum UI/RadioGroup", "status": "mapped" },
+    { "name": "Separator", "figmaNode": "Ferrum UI/Separator", "status": "mapped" },
+    { "name": "Skeleton", "figmaNode": "Ferrum UI/Skeleton", "status": "mapped" },
+    { "name": "Slider", "figmaNode": "Ferrum UI/Slider", "status": "mapped" },
+    { "name": "Spinner", "figmaNode": "Ferrum UI/Spinner", "status": "mapped" },
+    { "name": "Switch", "figmaNode": "Ferrum UI/Switch", "status": "mapped" },
+    { "name": "Tabs", "figmaNode": "Ferrum UI/Tabs", "status": "mapped" },
+    { "name": "Textarea", "figmaNode": "Ferrum UI/Textarea", "status": "mapped" },
+    { "name": "Toast", "figmaNode": "Ferrum UI/Toast", "status": "mapped" },
+    { "name": "Tooltip", "figmaNode": "Ferrum UI/Tooltip", "status": "mapped" }
+  ]
+}

@@ -1,0 +1,32 @@
+[package]
+name = "ferrum-ui-website-rs"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.76"
+license = "MIT"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+ferrum = {
+    package = "ferrum-framework",
+    git = "https://github.com/ARtorias742/RUST_Frontend_Framework",
+}
+ferrum-core = {
+    package = "ferrum-rs-core",
+    git = "https://github.com/ARtorias742/RUST_Frontend_Framework",
+}
+ferrum-ui-local = {
+    package = "ferrum-ui",
+    path = "../../crates/ferrum-ui",
+}
+ferrum-ui-core-local = {
+    package = "ferrum-ui-core",
+    path = "../../crates/ferrum-ui-core",
+}
+wasm-bindgen = "0.2"
+web-sys = { version = "0.3", features = ["Window", "Document", "Element"] }
+
+[workspace]

@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-plz:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: release-plz/action@v0.5
+        with:
+          command: release-pr
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+  sbom:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anchore/sbom-action@v0
+        with:
+          path: .
+          format: spdx-json
+          output-file: ferrum-ui.spdx.json
+      - uses: sigstore/cosign-installer@v3
+      - run: >-
+          cosign sign-blob --yes ferrum-ui.spdx.json
+          --output-signature ferrum-ui.spdx.json.sig
+          --output-certificate ferrum-ui.spdx.json.pem
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: |
+            ferrum-ui.spdx.json
+            ferrum-ui.spdx.json.sig
+            ferrum-ui.spdx.json.pem

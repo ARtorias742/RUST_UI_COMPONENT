@@ -1,0 +1,21 @@
+[package]
+name = "ferrum-ui-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+ferrum-ui = { path = "../crates/ferrum-ui" }
+
+[[bin]]
+name = "registry_json"
+path = "fuzz_targets/registry_json.rs"
+test = false
+doc = false
+bench = false
+
+[workspace]

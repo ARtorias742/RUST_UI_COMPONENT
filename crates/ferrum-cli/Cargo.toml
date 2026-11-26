@@ -1,0 +1,23 @@
+[package]
+name = "ferrum-ui-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Source-distribution CLI for Ferrum UI"
+
+[[bin]]
+name = "ferrum"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+ferrum-ui = { path = "../ferrum-ui" }
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

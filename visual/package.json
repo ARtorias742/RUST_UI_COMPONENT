@@ -1,0 +1,13 @@
+{
+  "name": "ferrum-ui-visual",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:visual": "playwright test visual.spec.ts",
+    "test:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.49.0"
+  }
+}
