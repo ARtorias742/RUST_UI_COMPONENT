@@ -7,7 +7,6 @@ fuzz/Cargo.lock
 /web/nextjs/.next/
 /web/nextjs/package-lock.json
 /web/rust-frontend/target/
-/web/rust-frontend/dist/
 /visual/node_modules/
 /visual/test-results/
 /visual/playwright-report/

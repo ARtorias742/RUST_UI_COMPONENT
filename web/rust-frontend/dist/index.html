@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ferrum UI — Rust frontend</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: 0 0% 100%;
+        --fg: 240 10% 3.9%;
+        --muted: 240 4.8% 95.9%;
+        --border: 240 5.9% 90%;
+        --primary: 240 5.9% 10%;
+        --primary-fg: 0 0% 98%;
+        --radius: 0.5rem;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: 240 10% 3.9%;
+          --fg: 0 0% 98%;
+          --muted: 240 3.7% 15.9%;
+          --border: 240 3.7% 15.9%;
+          --primary: 0 0% 98%;
+          --primary-fg: 240 5.9% 10%;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: hsl(var(--bg));
+        color: hsl(var(--fg));
+        font-family: ui-sans-serif, system-ui, sans-serif;
+      }
+      .page { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; }
+      .hero { padding: 64px 0 40px; border-bottom: 1px solid hsl(var(--border)); }
+      .hero h1 { margin: 0 0 12px; font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: -0.04em; }
+      .hero p { max-width: 640px; color: hsl(var(--muted)); font-size: 1.1rem; }
+      .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 32px; }
+      .stack { display: grid; gap: 10px; }
+      .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      .muted { color: hsl(var(--muted)); }
+      footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid hsl(var(--border)); color: hsl(var(--muted)); }
+      code { font-family: ui-monospace, monospace; }
+      .card { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 16px; background: hsl(var(--bg)); }
+      .card h2 { margin: 0 0 12px; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: hsl(var(--muted)); }
+      .stack { display: grid; gap: 10px; }
+      .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      .muted { color: hsl(var(--muted)); }
+      .ferrum-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid hsl(var(--primary)); border-radius: var(--radius); background: hsl(var(--primary)); color: hsl(var(--primary-fg)); padding: 6px 12px; font-size: 0.85rem; line-height: 1; }
+      .ferrum-button--outline, .ferrum-button--ghost { background: transparent; color: hsl(var(--fg)); border-color: hsl(var(--border)); }
+      .ferrum-button--sm { padding: 4px 8px; font-size: 0.75rem; }
+      .ferrum-button--lg { padding: 8px 16px; font-size: 0.95rem; }
+      .ferrum-button--icon { width: 32px; height: 32px; padding: 0; }
+      .ferrum-button.is-disabled { opacity: 0.5; }
+      .ferrum-badge { display: inline-block; border: 1px solid hsl(var(--border)); border-radius: 999px; padding: 2px 8px; font-size: 0.7rem; }
+      .ferrum-badge--success { border-color: hsl(150 60% 40% / 0.4); background: hsl(150 60% 40% / 0.1); color: hsl(150 60% 30%); }
+      .ferrum-avatar { display: inline-grid; place-items: center; border-radius: 999px; background: hsl(var(--muted)); color: hsl(var(--fg)); font-size: 0.7rem; font-weight: 600; }
+      .ferrum-avatar--sm { width: 24px; height: 24px; }
+      .ferrum-avatar--md { width: 32px; height: 32px; }
+      .ferrum-avatar--lg { width: 40px; height: 40px; }
+      .ferrum-checkbox { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+      .ferrum-checkbox-input { width: 16px; height: 16px; accent-color: hsl(var(--primary)); }
+      .ferrum-input-label { display: grid; gap: 4px; font-size: 0.8rem; }
+      .ferrum-input { border: 1px solid hsl(var(--border)); border-radius: var(--radius); background: hsl(var(--bg)); color: hsl(var(--fg)); padding: 6px 8px; font-size: 0.85rem; }
+      .ferrum-input.is-invalid { border-color: hsl(var(--destructive)); }
+      .ferrum-progress { height: 8px; border-radius: 999px; background: hsl(var(--muted)); overflow: hidden; }
+      .ferrum-progress-bar { height: 100%; background: hsl(var(--primary)); }
+      .ferrum-card { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 14px; }
+      .ferrum-card-header h2 { margin: 0; font-size: 0.95rem; }
+      .ferrum-card-header p, .ferrum-card-footer { color: hsl(var(--muted)); font-size: 0.8rem; }
+      .ferrum-tabs { display: grid; gap: 8px; }
+      .ferrum-tablist { display: flex; gap: 4px; border-bottom: 1px solid hsl(var(--border)); }
+      .ferrum-tab { border: 0; border-bottom: 2px solid transparent; background: transparent; color: hsl(var(--muted)); padding: 6px 8px; font-size: 0.8rem; }
+      .ferrum-tab[aria-selected="true"] { color: hsl(var(--fg)); border-bottom-color: hsl(var(--primary)); }
+      .ferrum-tabpanel { font-size: 0.8rem; color: hsl(var(--muted)); }
+      .ferrum-menu { display: inline-grid; min-width: 180px; gap: 2px; border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 4px; background: hsl(var(--bg)); }
+      .ferrum-menu-item { border: 0; border-radius: calc(var(--radius) - 2px); background: transparent; color: hsl(var(--fg)); padding: 6px 8px; text-align: left; font-size: 0.8rem; }
+      .ferrum-menu-separator { height: 1px; background: hsl(var(--border)); margin: 4px 0; }
+      .ferrum-menu-label { padding: 4px 8px; font-size: 0.7rem; color: hsl(var(--muted)); }
+      .ferrum-accordion { display: grid; gap: 4px; }
+      .ferrum-accordion-item { border: 1px solid hsl(var(--border)); border-radius: var(--radius); }
+      .ferrum-accordion-trigger { width: 100%; border: 0; background: transparent; color: hsl(var(--fg)); padding: 8px; text-align: left; font-size: 0.8rem; }
+      .ferrum-accordion-panel { padding: 8px; border-top: 1px solid hsl(var(--border)); font-size: 0.8rem; color: hsl(var(--muted)); }
+      .ferrum-alert { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 10px; font-size: 0.8rem; }
+      .ferrum-alert--success { border-color: hsl(150 60% 40% / 0.4); background: hsl(150 60% 40% / 0.1); }
+      .ferrum-alert p { margin: 2px 0 0; color: hsl(var(--muted)); }
+      .ferrum-toast-region { display: grid; gap: 8px; }
+      .ferrum-toast { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 10px; background: hsl(var(--bg)); font-size: 0.8rem; }
+      .ferrum-toast p { margin: 2px 0 0; color: hsl(var(--muted)); }
+      .ferrum-separator { background: hsl(var(--border)); }
+      .ferrum-separator--horizontal { height: 1px; width: 100%; }
+      .ferrum-separator--vertical { width: 1px; height: 1rem; }
+      .ferrum-skeleton { background: hsl(var(--muted)); border-radius: var(--radius); }
+      .ferrum-dialog-backdrop { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 12px; }
+      .ferrum-dialog { border-radius: var(--radius); font-size: 0.8rem; }
+      .ferrum-dialog h2 { margin: 0; font-size: 0.9rem; }
+      .ferrum-dialog p { color: hsl(var(--muted)); }
+      [hidden] { display: none !important; }
+      .docs { margin-top: 48px; }
+      .docs h2 { margin: 0 0 8px; font-size: 1.5rem; letter-spacing: -0.02em; }
+      .doc-list { display: grid; gap: 8px; margin-top: 16px; }
+      .doc { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 10px 12px; background: hsl(var(--bg)); }
+      .doc summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+      .doc summary .muted { font-size: 0.7rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.06em; }
+      .doc p { margin: 8px 0 0; font-size: 0.8rem; color: hsl(var(--muted)); }
+      .doc code { display: block; margin-top: 8px; border-radius: calc(var(--radius) - 2px); background: hsl(var(--muted)); padding: 6px 8px; font-size: 0.7rem; overflow-x: auto; }
+    </style>
+  <link rel="modulepreload" href="/rust/ferrum-ui-website-rs.js" crossorigin="anonymous" integrity="sha384-IgnjinH/v+9Oz+fEoEztzXpMLKYSZ9OAOZoAM+bcfG6IZzQz4Ym4Gtt9fnMjCqmL"><link rel="preload" href="/rust/ferrum-ui-website-rs_bg.wasm" crossorigin="anonymous" integrity="sha384-7uvsC0zDtY1g++sCMOLZcFpuQGBLNQ0jg7CjENkypjunzgM0jha/n+TPxLBxrIJr" as="fetch" type="application/wasm"></head>
+  <body>
+    <div id="app"></div>
+  
+<script type="module">
+import init, * as bindings from '/rust/ferrum-ui-website-rs.js';
+
+const wasm = await init({ module_or_path: '/rust/ferrum-ui-website-rs_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script></body>
+</html>
