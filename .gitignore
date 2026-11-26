@@ -10,3 +10,4 @@ fuzz/Cargo.lock
 /visual/node_modules/
 /visual/test-results/
 /visual/playwright-report/
+/web/rust-frontend/dist/.trunk-lock
