@@ -32,7 +32,13 @@
         color: hsl(var(--fg));
         font-family: ui-sans-serif, system-ui, sans-serif;
       }
-      .page { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; }
+      .page { max-width: 1100px; min-height: 100vh; margin: 0 auto; padding: 32px 24px 80px; background: hsl(var(--bg)); }
+      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 20px; margin-bottom: 28px; border-bottom: 1px solid hsl(var(--border)); }
+      .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.01em; }
+      .logo { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: hsl(var(--primary)); color: hsl(var(--primary-fg)); font-size: 14px; }
+      .toggle { border: 1px solid hsl(var(--border)); background: hsl(var(--bg)); color: hsl(var(--fg)); border-radius: 8px; padding: 6px 12px; font-size: 13px; font-family: inherit; cursor: pointer; transition: background 0.15s ease; }
+      .toggle:hover { background: hsl(var(--muted)); }
+      .toggle:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 2px; }
       .hero { padding: 64px 0 40px; border-bottom: 1px solid hsl(var(--border)); }
       .hero h1 { margin: 0 0 12px; font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: -0.04em; }
       .hero p { max-width: 640px; color: hsl(var(--muted)); font-size: 1.1rem; }
@@ -106,7 +112,7 @@
       .doc p { margin: 8px 0 0; font-size: 0.8rem; color: hsl(var(--muted)); }
       .doc code { display: block; margin-top: 8px; border-radius: calc(var(--radius) - 2px); background: hsl(var(--muted)); padding: 6px 8px; font-size: 0.7rem; overflow-x: auto; }
     </style>
-  <link rel="modulepreload" href="/rust/ferrum-ui-website-rs.js" crossorigin="anonymous" integrity="sha384-IgnjinH/v+9Oz+fEoEztzXpMLKYSZ9OAOZoAM+bcfG6IZzQz4Ym4Gtt9fnMjCqmL"><link rel="preload" href="/rust/ferrum-ui-website-rs_bg.wasm" crossorigin="anonymous" integrity="sha384-7uvsC0zDtY1g++sCMOLZcFpuQGBLNQ0jg7CjENkypjunzgM0jha/n+TPxLBxrIJr" as="fetch" type="application/wasm"></head>
+  <link rel="modulepreload" href="/rust/ferrum-ui-website-rs.js" crossorigin="anonymous" integrity="sha384-uaqh1CDNA9dhOPIhSxuNssdXw/N7HSkkr1Bb3yONJmA6yygjvrCN/jFcGxKA6Dbt"><link rel="preload" href="/rust/ferrum-ui-website-rs_bg.wasm" crossorigin="anonymous" integrity="sha384-Bs54Tg0lvbOjijoN8I0ZttIgY0iVPFdsb4YigyRkFNX63qYQ8DIHr+fKeVg7zStS" as="fetch" type="application/wasm"></head>
   <body>
     <div id="app"></div>
   

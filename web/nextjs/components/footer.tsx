@@ -1,13 +1,13 @@
 export function Footer() {
   return (
     <footer className="border-t">
-      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-6 py-10 text-sm text-muted-foreground sm:flex-row sm:items-center">
+      <div className="mx-auto flex max-w-content flex-col items-start justify-between gap-4 px-4 py-10 text-sm text-muted-foreground sm:flex-row sm:items-center sm:px-6">
         <p>Ferrum UI · renderer-neutral components for Rust frameworks.</p>
         <div className="flex gap-4">
-          <a href="#components" className="hover:text-foreground">
+          <a href="/components" className="hover:text-foreground">
             Components
           </a>
-          <a href="#registry" className="hover:text-foreground">
+          <a href="/#registry" className="hover:text-foreground">
             Registry
           </a>
           <a

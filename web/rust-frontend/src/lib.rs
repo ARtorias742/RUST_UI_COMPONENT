@@ -96,6 +96,7 @@ fn to_vnode(element: &Element) -> VNode {
 
 #[component]
 fn Gallery() -> VNode {
+    let (dark, set_dark) = use_state(|| false);
     let button = to_vnode(
         &ButtonProps::new("Primary")
             .with_variant(ButtonVariant::Default)
@@ -198,12 +199,21 @@ fn Gallery() -> VNode {
         .unwrap_or(VNode::Empty);
 
     rsx! {
-        ThemeRoot { theme: Theme::light(),
+        ThemeRoot { theme: if dark { Theme::dark() } else { Theme::light() },
             div { class: "page",
+                div { class: "topbar",
+                    div { class: "brand",
+                        span { class: "logo", "F" }
+                        span { "Ferrum UI" }
+                    }
+                    button { class: "toggle", onclick: move |_| set_dark.update(|value| !value),
+                        if dark { "☀ Light" } else { "☾ Dark" }
+                    }
+                }
                 header { class: "hero",
                     h1 { "Ferrum UI" }
                     p { "A shadcn/ui-style component gallery rendered in Rust/WASM." }
-                    p { class: "muted", "15 components · same models as the Next.js site" }
+                    p { class: "muted", "25 components · same models as the Next.js site" }
                 }
                 section { class: "grid",
                     div { class: "card",
@@ -234,7 +244,7 @@ fn Gallery() -> VNode {
                 }
                 section { class: "docs",
                     h2 { "Component index" }
-                    p { class: "muted", "All 15 components with usage and accessibility notes." }
+                    p { class: "muted", "All 25 components with usage and accessibility notes." }
                     div { class: "doc-list",
                         for item in COMPONENTS {
                             details { class: "doc",

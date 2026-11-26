@@ -10,7 +10,7 @@ const commands = [
 export function Registry() {
   return (
     <section id="registry" className="border-y bg-muted/20">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-content gap-10 px-6 py-20 lg:grid-cols-2">
         <div>
           <p className="text-sm font-medium text-muted-foreground">Distribution</p>
           <h2 className="mt-2 text-3xl font-semibold tracking-tight">

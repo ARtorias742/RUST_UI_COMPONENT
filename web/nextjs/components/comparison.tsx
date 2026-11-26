@@ -12,7 +12,7 @@ const rows = [
 export function Comparison() {
   return (
     <section id="comparison" className="border-y bg-muted/20">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto max-w-content px-6 py-20">
         <div className="max-w-2xl">
           <p className="text-sm font-medium text-muted-foreground">Comparison</p>
           <h2 className="mt-2 text-3xl font-semibold tracking-tight">

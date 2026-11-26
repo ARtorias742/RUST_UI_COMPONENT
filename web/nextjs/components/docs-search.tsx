@@ -11,7 +11,7 @@ export function DocsSearch({ items }: { items: ComponentEntry[] }) {
   const results = useMemo(() => {
     if (!normalized) return items;
     return items.filter((item) =>
-      [item.name, item.category, item.description, item.code, ...item.props]
+      [item.name, item.category, item.description, item.code, ...item.props.map((prop) => prop.name)]
         .join(" ")
         .toLowerCase()
         .includes(normalized),
